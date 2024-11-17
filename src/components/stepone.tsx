@@ -99,7 +99,7 @@ export default function StepOne({ setStepFn, setPhotoFn, setFileFn }: Props) {
                   />
                   <button
                     onClick={openCamera}
-                    className="inline-flex justify-center items-center py-3 px-5 mt-4 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg w-full sm:w-auto text-center"
+                    className="hidden xl:inline-flex justify-center items-center py-3 px-5 mt-4 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg w-full sm:w-auto text-center"
                     type="button"
                   >
                     <svg
@@ -114,7 +114,7 @@ export default function StepOne({ setStepFn, setPhotoFn, setFileFn }: Props) {
                         clip-rule="evenodd"
                       />
                     </svg>
-                    Upload From Camera
+                    Upload File
                   </button>
                   {/* <button>snap</button> เพิ่มปุ่ม snapshot แยกกับปุ่ม*/}
                 </div>

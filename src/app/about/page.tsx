@@ -221,11 +221,11 @@ export default function About() {
                 </div>
               </div>
               <img
-                src="/assets/method.jpg"
+                src="/assets/Method.png"
                 alt="method"
-                className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-                width="2432"
-                height="1442"
+                className="max-w-none ring-gray-400/10 text-center"
+                width="512"
+                height="700"
               />
             </div>
           </div>
