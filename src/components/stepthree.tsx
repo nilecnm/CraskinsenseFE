@@ -158,7 +158,7 @@ export default function StepThree({ photo, result }: Props) {
                     <img
                       src={"data:image/png;base64, " + result.density_plot}
                       alt="Density plot"
-                      className="w-full h-full object-contain rounded-lg w-2/3 h-2/3 mx-auto"
+                      className="object-contain rounded-lg w-2/3 h-2/3 mx-auto"
                     />
                   )}
                 </div>
