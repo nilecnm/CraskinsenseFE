@@ -2,11 +2,12 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import axios from "axios";
+import { PredictedMaskResponse } from "@/app/task/page";
 
 interface Props {
   setStepFn: Dispatch<SetStateAction<number>>;
   photo: string | null;
-  setResultFn: Dispatch<SetStateAction<string | null>>;
+  setResultFn: Dispatch<SetStateAction<PredictedMaskResponse | null>>;
   file: File | null;
 }
 
@@ -33,7 +34,7 @@ export default function StepTwo({
 
         // ส่งคำขอไปยัง API
         const response = await axios.post(
-          "http://localhost:8000/predict",
+          "https://craskinsense-be-959292480377.asia-northeast3.run.app/api/predict",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -41,8 +42,8 @@ export default function StepTwo({
         );
 
         if (response.status === 200) {
-          const base64Image = response.data.predicted_mask_base64;
-          setResultFn(`data:image/png;base64,${base64Image}`);
+          response.data.predicted_mask_base64 = `data:image/png;base64,${response.data.predicted_mask_base64}`;
+          setResultFn(response.data);
           setStepFn(3);
         } else {
           console.error("Failed to fetch image from API");

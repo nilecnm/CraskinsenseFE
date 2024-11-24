@@ -26,7 +26,7 @@ function Card({ fullName, role, description, photo, center }: ICard) {
         />
       </a>
       <div className="p-5 grid col-span-2">
-        <h3 className="text-xl font-bold tracking-tight text-gray-900">
+        <h3 className="text-lg font-bold tracking-tight text-gray-900">
           <a href="#">{fullName}</a>
         </h3>
         <span className="text-gray-500">{role}</span>
@@ -221,11 +221,9 @@ export default function About() {
                 </div>
               </div>
               <img
-                src="/assets/Method.png"
+                src="/assets/method.png"
                 alt="method"
-                className="max-w-none ring-gray-400/10 text-center"
-                width="512"
-                height="700"
+                className="w-full sm:w-3/4 md:w-2/4 max-w-none ring-gray-400/10 mx-auto mt-0 sm:mt-16 text-center"
               />
             </div>
           </div>
@@ -246,35 +244,31 @@ export default function About() {
                 center
                 fullName="Anyamanee Chatsirisupachai"
                 role="Assistant Professor"
-                description="Jese drives the technical strategy of the flowbite platform
-                    and brand."
+                description="A PSCM researcher and inventor, specializes in biology, focusing on innovative solutions for skin damage prevention"
                 photo="/assets/person1.png"
               />
               <Card
                 fullName="Pittayaporn Musika"
                 role="Data Scientist"
-                description="a"
+                description="Health data science who explores the application of machine learning in biomedical imaging"
                 photo="/assets/person2.png"
               />
               <Card
                 fullName="Pornpitchaphan Niemhom"
                 role="Data Scientist"
-                description="Jese drives the technical strategy of the flowbite platform
-                    and brand."
+                description="Health data science who explores the application of machine learning in biomedical imaging"
                 photo="/assets/person3.png"
               />
               <Card
                 fullName="Trirat Arromrit"
                 role="Data Scientist"
-                description="Jese drives the technical strategy of the flowbite platform
-                    and brand."
+                description="A skilled Data Scientist, specializes in leveraging data analytics and machine learning"
                 photo="/assets/person4.png"
               />
               <Card
                 fullName="Chanamet Akkarakittichok"
                 role="Web Developer"
-                description="Jese drives the technical strategy of the flowbite platform
-                    and brand."
+                description="Trainee web developer who committed to delivering efficient and user friendly solutions"
                 photo="/assets/person5.png"
               />
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { PredictedMaskResponse } from "@/app/task/page";
 import { useState } from "react";
 import {
   TransformWrapper,
@@ -9,7 +10,7 @@ import {
 
 interface Props {
   photo: string | null;
-  result: string | null;
+  result: PredictedMaskResponse | null;
 }
 
 const Controls = () => {
@@ -49,19 +50,12 @@ export default function StepThree({ photo, result }: Props) {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             STEP 3: REVIEW RESULT
           </h2>
-          {/* <p className="mt-2 text-lg leading-8 text-gray-600">
-            Ready to start your next project with us? Send us a message and we
-            will get back to you as soon as possible!
-          </p> */}
         </div>
       </div>
       <div className="flex flex-col items-center justify-center bg-white text-gray-900">
-        {/* Main Container */}
         <div className="container mx-auto px-4 py-8">
-          {/* Top Section with Image and Data */}
           <div className="flex flex-col md:flex-row gap-4">
-            {/* Image Section (40%) */}
-            <div className="flex-2 flex flex-col items-center justify-between bg-white p-4 rounded-lg shadow-lg w-full md:w-2/5">
+            <div className="flex-2 flex flex-col items-center bg-white p-4 rounded-lg shadow-lg w-full md:w-2/5">
               <TransformWrapper>
                 {({}) => (
                   <>
@@ -75,7 +69,7 @@ export default function StepThree({ photo, result }: Props) {
                             <img
                               src={photo}
                               alt="Uploaded Preview"
-                              className="w-full h-full object-contain rounded-lg"
+                              className="w-full h-full object-fill rounded-lg aspect-video"
                             />
                           )}
                         </label>
@@ -86,9 +80,12 @@ export default function StepThree({ photo, result }: Props) {
                         >
                           {result && (
                             <img
-                              src={result}
+                              src={
+                                "data:image/png;base64, " +
+                                result.overlayed_image
+                              }
                               alt="Uploaded Preview"
-                              className="w-full h-full object-contain rounded-lg"
+                              className="w-full h-full object-fill rounded-lg aspect-video"
                             />
                           )}
                         </label>
@@ -106,40 +103,64 @@ export default function StepThree({ photo, result }: Props) {
                   </>
                 )}
               </TransformWrapper>
+              <div className="py-3 px-12 mt-4 text-center text-lg tracking-tight text-gray-900 sm:text-lg">
+                {" "}
+                The predictions are from a model that achieved an F1 score of
+                0.8939{" "}
+              </div>
             </div>
 
-            {/* Data and Chart Section (60%) */}
             <div className="flex flex-col bg-white rounded-lg shadow-md w-full md:w-3/5">
               <div className="flex flex-col sm:flex-row p-4 gap-2 w-full">
                 {/* Data Cards */}
                 <div className="bg-white w-full sm:w-1/2 md:w-1/4 p-4 rounded-lg text-center shadow-md mb-4 md:mb-0">
                   <p>Number of Evaluated Points</p>
+                  <p className="mt-2 font-semibold text-lg">
+                    {result?.number_point !== null
+                      ? result?.number_point
+                      : "Loading..."}
+                  </p>
                 </div>
                 <div className="bg-white w-full sm:w-1/2 md:w-1/4 p-4 rounded-lg text-center shadow-md mb-4 md:mb-0">
                   <p>Maximum Thickness Values</p>
+                  <p className="mt-2 font-semibold text-lg">
+                    {result?.max_value !== null
+                      ? result?.max_value.toFixed(2)
+                      : "Loading..."}
+                  </p>
                 </div>
                 <div className="bg-white w-full sm:w-1/2 md:w-1/4 p-4 rounded-lg text-center shadow-md mb-4 md:mb-0">
                   <p>Average Thickness Values</p>
+                  <p className="mt-2 font-semibold text-lg">
+                    {result?.avg_value !== null
+                      ? result?.avg_value.toFixed(2)
+                      : "Loading..."}
+                  </p>
                 </div>
                 <div className="bg-white w-full sm:w-1/2 md:w-1/4 p-4 rounded-lg text-center shadow-md">
                   <p>Minimum Thickness Values</p>
+                  <p className="mt-2 font-semibold text-lg">
+                    {result?.min_value !== null
+                      ? result?.min_value.toFixed(2)
+                      : "Loading..."}
+                  </p>
                 </div>
               </div>
 
-              {/* Chart Section */}
-              <div className="bg-white p-4 rounded-lg mt-4 shadow-md">
-                <h2 className="text-center mb-4">
+              {/* Placeholder for Chart Section */}
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <p className="text-center mb-4">
                   Distribution of Damage Analysis
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Placeholder for Box Plot */}
-                  <div className="bg-white p-2 rounded-lg shadow-md">
-                    <p className="text-center">Box Plot Placeholder</p>
-                  </div>
-                  {/* Placeholder for Histogram */}
-                  <div className="bg-white p-2 rounded-lg shadow-md">
-                    <p className="text-center">Histogram Placeholder</p>
-                  </div>
+                </p>
+                <div className="bg-white p-2 rounded-lg shadow-md">
+                  <p className="text-center">Scatter Plot</p>
+                  {result && (
+                    <img
+                      src={"data:image/png;base64, " + result.density_plot}
+                      alt="Density plot"
+                      className="w-full h-full object-contain rounded-lg w-2/3 h-2/3 mx-auto"
+                    />
+                  )}
                 </div>
               </div>
             </div>

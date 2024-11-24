@@ -44,13 +44,32 @@ export default function Home() {
           </a>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            src="/assets/overview.jpg"
-            alt="overview"
-            className="w-full max-w-[48rem] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:max-w-[57rem] md:-ml-4 lg:-ml-0"
-            width="2432"
-            height="1442"
-          />
+          <iframe
+            src="https://www.youtube.com/embed/ZUFCgLdm0nI"
+            title="overview"
+            className="responsive-video rounded-xl shadow-xl ring-1 ring-gray-400/10"
+            style={{
+              aspectRatio: "16/9",
+              border: "none",
+              height: "auto",
+            }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <style>
+            {`
+      .responsive-video {
+        width: 100%;
+        max-width: 60%; /* Default: 60% of full width for desktop */
+      }
+
+      @media (max-width: 768px) {
+        .responsive-video {
+          max-width: 90%; /* 90% of full width for mobile */
+        }
+      }
+    `}
+          </style>
         </div>
       </div>
       <Footer />
